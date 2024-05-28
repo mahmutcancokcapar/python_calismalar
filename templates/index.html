@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Coordinates</title>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{{ url_for('static', filename='style.css') }}"
+		/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="coordinates-container">
+			<h1>Coordinates</h1>
+			<span id="x-coordinate">x coordinate: </span>
+			<span id="y-coordinate">y coordinate: </span>
+			<span id="z-coordinate">z coordinate: </span>
+			<span id="m-coordinate">m coordinate: </span>
+			<button class="button">Save Coordinates</button>
+		</div>
+
+		<script>
+			function updateCoordinates() {
+				$.getJSON("/update_data", function (data) {
+					$("#x-coordinate").text("x coordinate: " + data.x);
+					$("#y-coordinate").text("y coordinate: " + data.y);
+					$("#z-coordinate").text("z coordinate: " + data.z);
+					$("#m-coordinate").text("m coordinate: " + data.m);
+				});
+			}
+
+			setInterval(updateCoordinates, 1000);
+
+			$(document).ready(function () {
+				updateCoordinates();
+			});
+		</script>
+	</body>
+</html>

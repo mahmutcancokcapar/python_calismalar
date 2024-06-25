@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fotoğraf Çekme Uygulaması</title>
+</head>
+<body>
+    <h1>Fotoğraf Çekme Uygulaması</h1>
+    <form action="/scan" method="post">
+        <button type="submit">Scan</button>
+    </form>
+    <h2>Çekilen Fotoğraf</h2>
+    {% if image %}
+    <img src="{{ image }}" alt="Çekilen Fotoğraf">
+    {% endif %}
+</body>
+</html>

@@ -18,7 +18,8 @@
 			<span id="y-coordinate">y coordinate: </span>
 			<span id="z-coordinate">z coordinate: </span>
 			<span id="m-coordinate">m coordinate: </span>
-			<button class="button">Save Coordinates</button>
+			<button class="button" id="save-button">Save Coordinates</button>
+			<button class="button" id="view-button">See Saved Coordinates</button>
 		</div>
 
 		<script>
@@ -35,6 +36,20 @@
 
 			$(document).ready(function () {
 				updateCoordinates();
+
+				$("#save-button").click(function () {
+					$.post("/save_coordinates", function (response) {
+						if (response.status === "success") {
+							alert("Coordinates saved successfully!");
+						} else {
+							alert("Failed to save coordinates.");
+						}
+					});
+				});
+
+				$("#view-button").click(function () {
+					window.location.href = "/view_coordinates";
+				});
 			});
 		</script>
 	</body>
